@@ -6301,3 +6301,31 @@ Poll this resource to GET the ADS instance creation task detail
                      }
               } 
 
+## /gdc/dss/instances/{instanceId}/jdbc
+
+### GET
+Retrieves details about JDBC connection info for specified instance.
+
++ Request
+    
+    + Headers
+    
+        Accept: application/json
++ Response
+    
+    + Headers
+    
+        Content-type: application/json
+    
+    + Body
+    
+        {
+            "jdbcInfo" : {
+                "host": "server.domain.com"
+                "port": 5443
+                "links": {
+                    "self": "/gdc/dss/instances/{instanceId}/jdbc"
+                    "parent": "/gdc/dss/instances/{instanceId}"
+                }
+            }
+        }
