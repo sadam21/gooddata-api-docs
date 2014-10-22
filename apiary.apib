@@ -6329,3 +6329,153 @@ Retrieves details about JDBC connection info for specified instance.
                 }
             }
         }
+
+## /gdc/dss/instances/{dssInstanceId}/users
+
+* `role` (required, string) - Name of the user's role
+* `profile` - URI of the user's profile (i.e. /gdc/account/profile/{userId}), on POST
+              for /gdc/dss/instances/{instanceId}/users either profile or login must be defined
+* `login` - User's GDC login, for POST /gdc/dss/instances/{instanceId}/users either profile or login must be defined
+
+### GET
+List all users in the instance
+
++ Request
+    
+    + Headers
+    
+        Accept: application/json
++ Response
+    
+    + Headers
+    
+        Content-type: application/json
+    
+    + Body
+    
+        {
+            "items": [
+                {
+                    "user" : {
+                        "role": "{role}"
+                        "profile": "/gdc/account/profile/{userId}"
+                        "login": "{login}"
+                        "links": {
+                            "self": "/gdc/dss/instances/{instanceId}/users/{userId}"
+                            "parent": "/gdc/dss/instances/{instanceId}/users"
+                        }
+                    }
+                }
+            ]
+        }
+
+### POST
+Add user to the instance
+
++ Request 
+      
+     + Headers
+          
+            Content-Type: application/json
+            Accept: application/json
+
+     + Body
+
+        {
+            "user" : {
+                "role": "{role}"
+                "profile": "/gdc/account/profile/{userId}"
+                "login": "{login}"
+            }
+        }
+        
++ Response 202 (application/json)
+     
+     + Headers
+
+            Content-type: application/json     
+
+     + Body
+
+         {
+             "asyncTask" : {
+                 "links" : {
+                     "poll" : "/gdc/dss/executions/{execution-id}"
+                 }
+             }
+         }
+
+## /gdc/dss/instances/{instanceId}/users/{userId}
+
+### GET
+Retrieves specific user from instance
+
++ Request
+    
+    + Headers
+    
+        Accept: application/json
++ Response
+    
+    + Headers
+    
+        Content-type: application/json
+    
+    + Body
+
+        {
+            "user" : {
+                "role": "{role}"
+                "profile": "/gdc/account/profile/{userId}"
+                "login": "{login}"
+                "links": {
+                    "self": "/gdc/dss/instances/{instanceId}/users/{userId}"
+                    "parent": "/gdc/dss/instances/{instanceId}/users"
+                }
+            }
+        }
+
+### PUT
+Update user's role
+
++ Request 
+      
+     + Headers
+          
+            Content-Type: application/json
+            Accept: application/json
+
+     + Body
+
+        {
+            "user" : {
+                "role": "{role}"
+                "profile": "/gdc/account/profile/{userId}"
+            }
+        }
+        
++ Response 204
+
+### DELETE
+Remove user from the instance
+
++ Request 
+    + Headers
+
+            Accept: application/json
+
++ Response 202 (application/json)
+     
+     + Headers
+
+            Content-type: application/json     
+
+     + Body
+
+         {
+             "asyncTask" : {
+                 "links" : {
+                     "poll" : "/gdc/dss/executions/{execution-id}"
+                 }
+             }
+         }
