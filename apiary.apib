@@ -5983,6 +5983,34 @@ Organization administrators and owners can use the following resources to custom
 ADS is an Agile Data Warehousing Service fully hosted by GoodData. Using the ADS API you are able to list, create and update the ADS Instances.
 Remember that you need a special `authorization token` to create new ADS instance.
 
+## /gdc/dss
+
+### GET
+
++ Request 
+      
+    + Headers
+          
+            Accept: application/json
+
++ Response 200 (application/json)
+     
+    + Headers
+    
+            Content-type: application/json
+
+    + Body
+        
+        {
+            "dss" {
+                "links": {
+                    "self" : "/gdc/dss",
+                    "parent" : "/gdc",
+                    "dssInstances" : "/gdc/dss/instances"
+                }
+            }
+        }
+
 ## /gdc/dss/instances
 
 ### GET
